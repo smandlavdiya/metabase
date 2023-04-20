@@ -57,7 +57,7 @@
 #_{:clj-kondo/ignore [:deprecated-var]}
 (api/defendpoint-schema PUT "/settings"
   "Update SAML Sign-In related settings. You must be a superuser or have `setting` permission to do this."
-  [:as {{:keys [saml-identity-provider-uri saml-enabled saml-identity-provider-issuer saml-identity-provider-certificate saml-application-name saml-attribute-email saml-attribute-firstname saml-attribute-lastname]} :body}]
+  [:as {{:keys [saml-identity-provider-uri saml-enabled saml-identity-provider-issuer saml-identity-provider-certificate saml-application-name saml-attribute-email saml-attribute-firstname saml-attribute-lastname enable-password-login]} :body}]
   {saml-identity-provider-uri                   (s/maybe s/Str)
    saml-enabled                                 (s/maybe s/Bool)
    saml-identity-provider-issuer                (s/maybe s/Str)
