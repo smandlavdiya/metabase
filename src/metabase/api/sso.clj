@@ -57,7 +57,7 @@
 #_{:clj-kondo/ignore [:deprecated-var]}
 (api/defendpoint-schema PUT "/settings"
   "Update SAML Sign-In related settings. You must be a superuser or have `setting` permission to do this."
-  [:as {{:keys [saml-identity-provider-uri saml-enabled saml-identity-provider-issuer saml-identity-provider-certificate saml-application-name saml-attribute-email saml-attribute-firstname saml-attribute-lastname saml-group-sync]} :body}]
+  [:as {{:keys [saml-identity-provider-uri saml-enabled saml-identity-provider-issuer saml-identity-provider-certificate saml-application-name saml-attribute-email saml-attribute-firstname saml-attribute-lastname]} :body}]
   {saml-identity-provider-uri                   (s/maybe s/Str)
    saml-enabled                                 (s/maybe s/Bool)
    saml-identity-provider-issuer                (s/maybe s/Str)
@@ -66,8 +66,6 @@
    saml-attribute-email                         (s/maybe s/Str)
    saml-attribute-firstname                     (s/maybe s/Str)
    saml-attribute-lastname                      (s/maybe s/Str)
-   saml-group-sync                              (s/maybe s/Bool)
-   saml-attribute-group                         (s/maybe s/Str)
    enable-password-login                        (s/maybe s/Bool)}
   (api/check-superuser)
   ;; Set saml-enabled in a separate step
@@ -79,8 +77,6 @@
                        :saml-attribute-email                         saml-attribute-email
                        :saml-attribute-firstname                     saml-attribute-firstname
                        :saml-attribute-lastname                      saml-attribute-lastname
-                       :saml-group-sync                              saml-group-sync
-                       :saml-attribute-group                         saml-attribute-group
                        :enable-password-login                        enable-password-login})
    (sso-settings/saml-enabled! saml-enabled)))
 
