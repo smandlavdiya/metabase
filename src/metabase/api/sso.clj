@@ -68,7 +68,6 @@
    saml-attribute-lastname                      (s/maybe s/Str)
    saml-group-sync                              (s/maybe s/Bool)
    saml-attribute-group                         (s/maybe s/Str)
-   saml-group-mappings                          (s/maybe s/Map)
    enable-password-login                        (s/maybe s/Bool)}
   (api/check-superuser)
   ;; Set saml-enabled in a separate step
@@ -82,7 +81,6 @@
                        :saml-attribute-lastname                      saml-attribute-lastname
                        :saml-group-sync                              saml-group-sync
                        :saml-attribute-group                         saml-attribute-group
-                       :saml-group-mappings                          saml-group-mappings
                        :enable-password-login                        enable-password-login})
    (sso-settings/saml-enabled! saml-enabled)))
 

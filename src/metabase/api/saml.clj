@@ -14,16 +14,17 @@
   [:as {settings :body}]
   {settings :map}
   (api/check-superuser)
-  (let [filename (:saml-keystore-path settings)
-        password (:saml-keystore-password settings)
-        alias (:saml-keystore-alias settings)]
-    ;; (if (or (every? str/blank? [filename password alias])
-    ;;         (saml/has-private-key? {:filename filename
-    ;;                                 :password password
-    ;;                                 :alias    alias}))
-      (setting/set-many! settings)
-      ;; test failed, return result message
-      {:status 400
-       :body   "Error finding private key in provided keystore and alias."})))
+  (setting/set-many! settings))
+  ;; (let [filename (:saml-keystore-path settings)
+  ;;       password (:saml-keystore-password settings)
+  ;;       alias (:saml-keystore-alias settings)]
+  ;;   (if (or (every? str/blank? [filename password alias])
+  ;;           (saml/has-private-key? {:filename filename
+  ;;                                   :password password
+  ;;                                   :alias    alias}))
+  ;;     (setting/set-many! settings)
+  ;;     ;; test failed, return result message
+  ;;     {:status 400
+  ;;      :body   "Error finding private key in provided keystore and alias."})))
 
 (api/define-routes)
