@@ -18,7 +18,7 @@
    [metabase.util.log :as log]
    [ring.util.response :as response]))
 
-(u/ignore-exceptions (classloader/require '[metabase-enterprise.sso.api.routes :as ee.sso.routes]))
+(u/ignore-exceptions (classloader/require '[metabase.api.routes.sso :as sso.routes]))
 
 (defn- redirect-including-query-string
   "Like `response/redirect`, but passes along query string URL params as well. This is important because the public and
@@ -42,7 +42,7 @@
   (GET "*" [] index/embed))
 
 (defroutes ^{:doc "Top-level ring routes for Metabase."} routes
-  (or (some-> (resolve 'ee.sso.routes/routes) var-get)
+  (or (some-> (resolve 'sso.routes/routes) var-get)
       (fn [_ respond _]
         (respond nil)))
   ;; ^/$ -> index.html
